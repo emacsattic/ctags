@@ -2,7 +2,7 @@
 
 ;; Copyright  (C)  2011 Free Software Foundation, Inc.
 
-;; Version: 1.0
+;; Version: 1.1
 ;; Keywords: tags ctags etags
 ;; Author: Guilherme M. Gondim <semente@taurinus.org>
 ;; Maintainer: Guilherme M. Gondim <semente@taurinus.org>
@@ -25,8 +25,23 @@
 
 ;;; Commentary:
 
+;; Configuration example:
+
 ;; (setq tags-revert-without-query t)
 ;; (global-set-key (kbd "<f5>") 'ctags-create-or-update-tags-table)
+
+;; Then just press <f5> to update or create your TAGS file. That function look
+;; for a file TAGS in the current and its parent directories, if a TAG file is
+;; not found it ask you where create a new one.
+
+;; Optionally you can use the function `ctags-search', a little wrapper for
+;; `tags-search' that provides a default input like in `find-tag', to search
+;; through all files listed in tags table.
+
+;; Also, if you prefer, you can override the key binding M-. for `find-tag' to
+;; use `ctags-search':
+
+;; (global-set-key (kbd "M-.")  'ctags-search)
 
 ;;; Installation:
 
@@ -97,6 +112,22 @@ set 'tags-file-name' with its path or set as nil."
   (if (not (ctags-set-tags-file))
       (ctags-create-tags-table)
     (ctags-update-tags-table)))
+
+
+(defun ctags-search ()
+  "A wrapper for `tags-search' that provide a default input."
+  (interactive)
+  (let* ((symbol-at-point (symbol-at-point))
+         (default (symbol-name symbol-at-point))
+         (input (read-from-minibuffer
+                 (if (symbol-at-point)
+                     (concat "Tags search (default " default "): ")
+                   "Tags search (regexp): "))))
+    (if (and (symbol-at-point) (string= input ""))
+        (tags-search default)
+      (if (string= input "")
+          (message "You must provide a regexp.")
+        (tags-search input)))))
 
 
 (provide 'ctags)
