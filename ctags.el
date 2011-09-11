@@ -50,7 +50,7 @@
 ;; (add-to-list 'load-path "/folder/containing/file")
 ;; (require 'ctags)
 
-;; Alternatively, you can install it using the Marmelade ELPA repository.
+;; Alternatively, you can install it using the Marmalade ELPA repository.
 
 ;;; Code:
 
