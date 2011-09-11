@@ -2,7 +2,7 @@
 
 ;; Copyright  (C)  2011 Free Software Foundation, Inc.
 
-;; Version: 1.1
+;; Version: 1.1.1
 ;; Keywords: tags ctags etags
 ;; Author: Guilherme M. Gondim <semente@taurinus.org>
 ;; Maintainer: Guilherme M. Gondim <semente@taurinus.org>
@@ -52,7 +52,7 @@
 
 ;;; Code:
 
-(defvar ctags-command "ctags -e -R ")
+(defvar ctags-command "/usr/bin/ctags -e -R ")
 
 (defun ctags ()
   (call-process-shell-command ctags-command nil "*Ctags*"))
@@ -90,7 +90,7 @@ set 'tags-file-name' with its path or set as nil."
          (file-name (concat (file-name-as-directory top-directory) "TAGS")))
     (cd top-directory)
     (if (not (= 0 (ctags)))
-        (message "Error creating %s!" tags-file-name)
+        (message "Error creating %s!" file-name)
       (setq-default tags-file-name file-name)
       (message "Table %s created and configured." tags-file-name))
     (cd current-directory)))
