@@ -1,4 +1,4 @@
-;;; ctags.el -- Exuberant Ctags utilities for Emacs
+;;; ctags.el --- Exuberant Ctags utilities for Emacs
 
 ;; Copyright  (C)  2011 Free Software Foundation, Inc.
 
@@ -28,9 +28,9 @@
 ;; Configuration example:
 
 ;; (setq tags-revert-without-query t)
-;; (global-set-key (kbd "<f5>") 'ctags-create-or-update-tags-table)
+;; (global-set-key (kbd "<f7>") 'ctags-create-or-update-tags-table)
 
-;; Then just press <f5> to update or create your TAGS file. That function look
+;; Then just press <f7> to update or create your TAGS file. That function look
 ;; for a file TAGS in the current and its parent directories, if a TAG file is
 ;; not found it ask you where create a new one.
 
