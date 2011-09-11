@@ -50,6 +50,8 @@
 ;; (add-to-list 'load-path "/folder/containing/file")
 ;; (require 'ctags)
 
+;; Alternatively, you can install it using the Marmelade ELPA repository.
+
 ;;; Code:
 
 (defvar ctags-command "/usr/bin/ctags -e -R ")
